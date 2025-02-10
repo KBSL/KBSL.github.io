@@ -315,11 +315,7 @@
             const videoGrid = document.getElementById('videoGrid');
             videoGrid.innerHTML = filteredVideos.map(createVideoCard).join('');
         }
-
-        // Initial render
         renderVideos(videos);
-
-        // Search functionality
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase();
