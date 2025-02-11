@@ -101,7 +101,39 @@
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
             transition: all 0.3s ease;
         }
+        .victim-counter {
+            background: rgba(44, 14, 67, 0.6);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin: 2rem auto;
+            max-width: 300px;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
+        .victim-counter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+        }
+
+        .victim-counter h2 {
+            color: var(--purple-300);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(216, 180, 254, 0.5);
+        }
+
+        .victim-count {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--purple-500);
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
         .search-input::placeholder {
             color: rgba(216, 180, 254, 0.5);
         }
@@ -188,7 +220,7 @@
         }
 
         .discord-link:hover {
-            color: #f3f4f6;
+            color: #f6f3f6;
             background: rgba(44, 14, 67, 0.5);
             border-color: rgba(168, 85, 247, 0.5);
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
@@ -196,22 +228,20 @@
         }
 
         ::-webkit-scrollbar {
-            width: 10px;
-        }
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: rgb(33, 11, 52)
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.3);
+    border-radius: 5px;
+    border: 2px solid rgba(44, 14, 67, 0.5);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.5);
+}
 
-        ::-webkit-scrollbar-track {
-            background: rgba(44, 14, 67, 0.3);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(168, 85, 247, 0.3);
-            border-radius: 5px;
-            border: 2px solid rgba(44, 14, 67, 0.5);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(168, 85, 247, 0.5);
-        }
 
         @keyframes flicker {
             0%, 100% { opacity: 1; }
@@ -228,6 +258,10 @@
 
     <header class="header">
         <h1 class="title">FREEMASONRY</h1>
+        <div class="victim-counter">
+            <h2>Total Victims</h2>
+            <div class="victim-count" id="victimCount">31</div>
+        </div>
         <div class="search-container">
             <input type="text" id="searchInput" class="search-input" placeholder="Search videos...">
         </div>
