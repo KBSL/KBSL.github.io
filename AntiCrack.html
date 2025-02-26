@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spooky Warning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Courier New", monospace;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-video {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            filter: grayscale(100%) contrast(120%);
+        }
+
+        .background-text {
+            position: fixed;
+            font-size: 20vw;
+            color: rgba(255, 255, 255, 0.05);
+            white-space: nowrap;
+            animation: backgroundMove 20s linear infinite;
+            font-weight: bold;
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .warning-text {
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: textGlow 2s infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            margin: 2rem 0;
+        }
+
+        .skull {
+            font-size: 2rem;
+            color: white;
+            animation: skullPulse 1s infinite;
+            margin: 0 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .static-effect {
+            position: fixed;
+            inset: 0;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz+3gN1qAAAACHRSTlMABQgNEBkdI3tTbkYAAACSSURBVDjL1ZOxDQIxEESfIqACOiAkJCSXDoAOoARS6IQUSIEOoAA6IEVCMtJpdwee8Y4U+JdG1r6nW+1q5VKSVMYqJVmKVVGyEWv/3+kda1TJnpWqRM8KVaJnuSrRs0yV6NlQlehZv1awcqxHJVhxrGEFq4nVwEqxAitNVVkJ1hUrwbpgJVhnrATrFyvF6mKVsYZKsvoCeUoWH0pYDKEAAAAASUVORK5CYII=');
+            opacity: 0.1;
+            animation: staticNoise 0.5s steps(2) infinite;
+            pointer-events: none;
+            z-index: 6;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); }
+            50% { text-shadow: 0 0 30px rgba(255, 255, 255, 1); }
+        }
+
+        @keyframes skullPulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        @keyframes staticNoise {
+            0% { transform: translate(0,0) }
+            100% { transform: translate(100%,100%) }
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: scanline 6s linear infinite;
+            z-index: 7;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .vignette {
+            position: fixed;
+            inset: 0;
+            box-shadow: inset 0 0 150px black;
+            pointer-events: none;
+            z-index: 8;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://c.tenor.com/XikvBXS6blMAAAAd/tenor.gif" alt="Background" class="background-video">
+    
+    <div class="background-text">ObfuscatedByFreemasonry</div>
+    
+    <div class="container">
+        <div class="warning-text">
+            <span class="skull"></span>
+            Don't try, boy
+            <span class="skull"></span>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+    <div class="static-effect"></div>
+    <div class="scanline"></div>
+    <div class="vignette"></div>
+
+    <script>
+        // Create floating background text
+        function createFloatingText() {
+            const text = document.createElement('div');
+            text.className = 'background-text';
+            text.textContent = 'Obfuscated By Freemasonry';
+            document.body.appendChild(text);
+        }
+
+        // Initialize effects
+        createFloatingText();
+
+        // Add creepy cursor effect
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.createElement('div');
+            cursor.style.position = 'fixed';
+            cursor.style.width = '4px';
+            cursor.style.height = '4px';
+            cursor.style.background = 'white';
+            cursor.style.borderRadius = '50%';
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.pointerEvents = 'none';
+            cursor.style.opacity = '0.5';
+            cursor.style.transition = 'transform 0.5s, opacity 0.5s';
+            cursor.style.zIndex = '9';
+            document.body.appendChild(cursor);
+
+            setTimeout(() => {
+                cursor.style.transform = 'scale(3)';
+                cursor.style.opacity = '0';
+                setTimeout(() => cursor.remove(), 500);
+            }, 100);
+        });
+    </script>
+</body>
+</html>
